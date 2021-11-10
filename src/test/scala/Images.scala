@@ -102,18 +102,18 @@ object Images{
     for( y <- 0 to 19){
       for( x <- 0 to 19) {
         if(image.get(x+20*y) == 0){
-          System.out.print(0x25A0.toChar + "  ")
-          //System.out.print("* ")
+          // System.out.print(0x25A0.toChar + "  ")
+          System.out.print("* ")
         }else if(image.get(x+20*y) == 255){
-          System.out.print(0x25A1.toChar + "  ")
-          //System.out.print("o ")
+          // System.out.print(0x25A1.toChar + "  ")
+          System.out.print("o ")
         }else{
           System.out.print("?  ")
         }
       }
-      System.out.print("\r\n")
+      System.out.println("")
     }
-    System.out.print("\r\n")
+    System.out.println("")
   }
 
 }
