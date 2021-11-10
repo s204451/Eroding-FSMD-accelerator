@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/eroding-fsmd-accelerator.iml" filepath="$PROJECT_DIR$/.idea/modules/eroding-fsmd-accelerator.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/eroding-fsmd-accelerator-build.iml" filepath="$PROJECT_DIR$/.idea/modules/eroding-fsmd-accelerator-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eroding-fsmd-accelerator-nosync.iml" filepath="$PROJECT_DIR$/.idea/modules/eroding-fsmd-accelerator-nosync.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eroding-fsmd-accelerator-nosync-build.iml" filepath="$PROJECT_DIR$/.idea/modules/eroding-fsmd-accelerator-nosync-build.iml" />
     </modules>
   </component>
 </project>
