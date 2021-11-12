@@ -244,6 +244,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+project/target/streams/
 project/target/streams/runtime/managedClasspath/_global/streams/export
 project/target/streams/runtime/internalDependencyClasspath/_global/streams/export
 project/target/streams/runtime/fullClasspath/_global/streams/export
