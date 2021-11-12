@@ -110,12 +110,10 @@ module Accelerator(
   reg [31:0] _RAND_0;
   reg [31:0] _RAND_1;
   reg [31:0] _RAND_2;
-  reg [31:0] _RAND_3;
 `endif // RANDOMIZE_REG_INIT
   reg [3:0] stateReg; // @[Accelerator.scala 19:25]
   reg [4:0] xReg; // @[Accelerator.scala 22:21]
   reg [4:0] yReg; // @[Accelerator.scala 23:21]
-  reg [31:0] dataReg; // @[Accelerator.scala 24:24]
   wire  _T = 4'h0 == stateReg; // @[Conditional.scala 37:30]
   wire  _T_1 = 4'h1 == stateReg; // @[Conditional.scala 37:30]
   wire  _T_2 = xReg <= 5'h13; // @[Accelerator.scala 41:17]
@@ -153,34 +151,43 @@ module Accelerator(
   wire [9:0] _GEN_16 = _T_54 ? _T_53 : 10'h0; // @[Conditional.scala 39:67]
   wire  _GEN_21 = _T_54 ? 1'h0 : _GEN_15; // @[Conditional.scala 39:67]
   wire [9:0] _GEN_22 = _T_48 ? _T_53 : _GEN_16; // @[Conditional.scala 39:67]
+  wire [7:0] _GEN_23 = _T_48 ? 8'hff : 8'h0; // @[Conditional.scala 39:67]
   wire  _GEN_24 = _T_48 | _T_54; // @[Conditional.scala 39:67]
   wire  _GEN_27 = _T_48 ? 1'h0 : _GEN_21; // @[Conditional.scala 39:67]
   wire [9:0] _GEN_28 = _T_41 ? _T_46 : _GEN_22; // @[Conditional.scala 39:67]
+  wire [7:0] _GEN_30 = _T_41 ? 8'h0 : _GEN_23; // @[Conditional.scala 39:67]
   wire  _GEN_31 = _T_41 ? 1'h0 : _GEN_24; // @[Conditional.scala 39:67]
   wire  _GEN_33 = _T_41 ? 1'h0 : _GEN_27; // @[Conditional.scala 39:67]
   wire [9:0] _GEN_34 = _T_34 ? _T_39 : _GEN_28; // @[Conditional.scala 39:67]
+  wire [7:0] _GEN_36 = _T_34 ? 8'h0 : _GEN_30; // @[Conditional.scala 39:67]
   wire  _GEN_37 = _T_34 ? 1'h0 : _GEN_31; // @[Conditional.scala 39:67]
   wire  _GEN_39 = _T_34 ? 1'h0 : _GEN_33; // @[Conditional.scala 39:67]
   wire [9:0] _GEN_40 = _T_27 ? _T_32 : _GEN_34; // @[Conditional.scala 39:67]
+  wire [7:0] _GEN_42 = _T_27 ? 8'h0 : _GEN_36; // @[Conditional.scala 39:67]
   wire  _GEN_43 = _T_27 ? 1'h0 : _GEN_37; // @[Conditional.scala 39:67]
   wire  _GEN_45 = _T_27 ? 1'h0 : _GEN_39; // @[Conditional.scala 39:67]
   wire [9:0] _GEN_46 = _T_20 ? _T_25 : _GEN_40; // @[Conditional.scala 39:67]
+  wire [7:0] _GEN_48 = _T_20 ? 8'h0 : _GEN_42; // @[Conditional.scala 39:67]
   wire  _GEN_49 = _T_20 ? 1'h0 : _GEN_43; // @[Conditional.scala 39:67]
   wire  _GEN_51 = _T_20 ? 1'h0 : _GEN_45; // @[Conditional.scala 39:67]
   wire [9:0] _GEN_52 = _T_7 ? _T_10 : _GEN_46; // @[Conditional.scala 39:67]
+  wire [7:0] _GEN_54 = _T_7 ? 8'h0 : _GEN_48; // @[Conditional.scala 39:67]
   wire  _GEN_55 = _T_7 ? 1'h0 : _GEN_49; // @[Conditional.scala 39:67]
   wire  _GEN_57 = _T_7 ? 1'h0 : _GEN_51; // @[Conditional.scala 39:67]
   wire [9:0] _GEN_60 = _T_3 ? 10'h0 : _GEN_52; // @[Conditional.scala 39:67]
+  wire [7:0] _GEN_61 = _T_3 ? 8'h0 : _GEN_54; // @[Conditional.scala 39:67]
   wire  _GEN_62 = _T_3 ? 1'h0 : _GEN_55; // @[Conditional.scala 39:67]
   wire  _GEN_64 = _T_3 ? 1'h0 : _GEN_57; // @[Conditional.scala 39:67]
   wire [9:0] _GEN_68 = _T_1 ? 10'h0 : _GEN_60; // @[Conditional.scala 39:67]
+  wire [7:0] _GEN_69 = _T_1 ? 8'h0 : _GEN_61; // @[Conditional.scala 39:67]
   wire  _GEN_70 = _T_1 ? 1'h0 : _GEN_62; // @[Conditional.scala 39:67]
   wire  _GEN_71 = _T_1 ? 1'h0 : _GEN_64; // @[Conditional.scala 39:67]
   wire [9:0] _GEN_75 = _T ? 10'h0 : _GEN_68; // @[Conditional.scala 40:58]
-  assign io_done = _T ? 1'h0 : _GEN_71; // @[Accelerator.scala 29:11 Accelerator.scala 113:15]
-  assign io_address = {{6'd0}, _GEN_75}; // @[Accelerator.scala 27:14 Accelerator.scala 57:18 Accelerator.scala 65:18 Accelerator.scala 73:18 Accelerator.scala 81:18 Accelerator.scala 89:18 Accelerator.scala 97:18 Accelerator.scala 103:18]
-  assign io_writeEnable = _T ? 1'h0 : _GEN_70; // @[Accelerator.scala 28:18 Accelerator.scala 99:22 Accelerator.scala 105:22]
-  assign io_dataWrite = dataReg; // @[Accelerator.scala 30:16]
+  wire [7:0] _GEN_76 = _T ? 8'h0 : _GEN_69; // @[Conditional.scala 40:58]
+  assign io_done = _T ? 1'h0 : _GEN_71; // @[Accelerator.scala 28:11 Accelerator.scala 113:15]
+  assign io_address = {{6'd0}, _GEN_75}; // @[Accelerator.scala 26:14 Accelerator.scala 57:18 Accelerator.scala 65:18 Accelerator.scala 73:18 Accelerator.scala 81:18 Accelerator.scala 89:18 Accelerator.scala 97:18 Accelerator.scala 103:18]
+  assign io_writeEnable = _T ? 1'h0 : _GEN_70; // @[Accelerator.scala 27:18 Accelerator.scala 99:22 Accelerator.scala 105:22]
+  assign io_dataWrite = {{24'd0}, _GEN_76}; // @[Accelerator.scala 29:16 Accelerator.scala 98:20 Accelerator.scala 104:20]
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
 `define RANDOMIZE
 `endif
@@ -222,8 +229,6 @@ initial begin
   xReg = _RAND_1[4:0];
   _RAND_2 = {1{`RANDOM}};
   yReg = _RAND_2[4:0];
-  _RAND_3 = {1{`RANDOM}};
-  dataReg = _RAND_3[31:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
@@ -320,29 +325,6 @@ end // initial
                       if (_T_60) begin
                         yReg <= _T_62;
                       end
-                    end
-                  end
-                end
-              end
-            end
-          end
-        end
-      end
-    end
-    if (reset) begin
-      dataReg <= 32'h0;
-    end else if (!(_T)) begin
-      if (!(_T_1)) begin
-        if (!(_T_3)) begin
-          if (!(_T_7)) begin
-            if (!(_T_20)) begin
-              if (!(_T_27)) begin
-                if (!(_T_34)) begin
-                  if (!(_T_41)) begin
-                    if (_T_48) begin
-                      dataReg <= 32'hff;
-                    end else if (_T_54) begin
-                      dataReg <= 32'h0;
                     end
                   end
                 end

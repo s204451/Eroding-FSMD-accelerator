@@ -21,13 +21,13 @@ class Accelerator extends Module {
   //Support registers
   val xReg = RegInit(0.U(5.W))
   val yReg = RegInit(0.U(5.W))
-  val dataReg = RegInit(0.U(32.W))
 
   //Default values
   io.address := 0.U
   io.writeEnable := false.B
   io.done := false.B
-  io.dataWrite := dataReg
+  io.dataWrite := false.B
+
 
   //FSMD switch
   switch(stateReg) {
@@ -95,13 +95,13 @@ class Accelerator extends Module {
     }
     is(whitenPixel) {
       io.address := xReg + 20.U * yReg + 400.U
-      dataReg := 255.U
+      io.dataWrite := 255.U
       io.writeEnable := true.B
       stateReg := incrementY
     }
     is(blackenPixel) {
       io.address := xReg + 20.U * yReg + 400.U
-      dataReg := 0.U
+      io.dataWrite := 0.U
       io.writeEnable := true.B
       stateReg := incrementY
     }
