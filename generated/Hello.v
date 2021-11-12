@@ -132,10 +132,9 @@ module Hello(
   wire  _T_5 = 2'h2 == stateReg; // @[Conditional.scala 37:30]
   wire [15:0] _T_7 = addressReg + 16'h190; // @[Hello.scala 65:43]
   wire [15:0] _T_9 = addressReg + 16'h1; // @[Hello.scala 67:32]
-  wire  _T_10 = addressReg == 16'h18f; // @[Hello.scala 68:23]
-  wire  _T_11 = 2'h3 == stateReg; // @[Conditional.scala 37:30]
+  wire  _T_12 = 2'h3 == stateReg; // @[Conditional.scala 37:30]
   wire [15:0] _GEN_5 = _T_5 ? _T_7 : 16'h0; // @[Conditional.scala 39:67]
-  wire  _GEN_9 = _T_5 ? 1'h0 : _T_11; // @[Conditional.scala 39:67]
+  wire  _GEN_9 = _T_5 ? 1'h0 : _T_12; // @[Conditional.scala 39:67]
   wire [15:0] _GEN_10 = _T_1 ? addressReg : _GEN_5; // @[Conditional.scala 39:67]
   wire  _GEN_13 = _T_1 ? 1'h0 : _T_5; // @[Conditional.scala 39:67]
   wire  _GEN_15 = _T_1 ? 1'h0 : _GEN_9; // @[Conditional.scala 39:67]
@@ -219,12 +218,8 @@ end // initial
     end else if (_T_1) begin
       stateReg <= 2'h2;
     end else if (_T_5) begin
-      if (_T_10) begin
-        stateReg <= 2'h3;
-      end else begin
-        stateReg <= 2'h1;
-      end
-    end else if (_T_11) begin
+      stateReg <= 2'h3;
+    end else if (_T_12) begin
       stateReg <= 2'h3;
     end
     if (reset) begin
