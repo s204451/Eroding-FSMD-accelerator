@@ -15,7 +15,7 @@ class Accelerator extends Module {
 
   //Write here your code
   //State enum and register
-  val idle :: neighborAndSelf :: leftIsBlack :: rightIsBlack :: upperIsBlack :: lowerIsBlack :: whitenPixel :: blackenPixel :: done :: Nil = Enum(9)
+  val idle :: border :: blackenSelf :: blackenLower :: leftIsBlack :: rightIsBlack :: upperIsBlack :: lowerIsBlack :: whitenPixel :: blackenPixel :: done :: Nil = Enum(11)
   val stateReg = RegInit(idle)
 
   //Support registers
@@ -33,32 +33,44 @@ class Accelerator extends Module {
   switch(stateReg) {
     is(idle) {
       when(io.start) {
-        stateReg := neighborAndSelf
+        stateReg := border
         xReg := 0.U
       }
     }
-//    is(firstFor) {
-//      when(xReg <= 19.U) {
-//        yReg := 0.U
-//        stateReg := neighborAndSelf
-//      }
-//    }
-    is(neighborAndSelf) {
+    is(border) {
       io.address := xReg + 20.U * yReg
       when (xReg === 20.U) {
         stateReg := done
       } .elsewhen(yReg === 20.U) {
         xReg := xReg + 1.U
         yReg := 0.U
-        stateReg := neighborAndSelf
+        stateReg := border
       } .elsewhen(xReg <= 19.U &&
                   yReg <= 19.U &&
-                  (yReg === 0.U || yReg === 19.U || xReg === 0.U || xReg === 19.U || io.dataRead === 0.U)) {
+                  (yReg === 0.U || yReg === 19.U || xReg === 0.U || xReg === 19.U)) {
         stateReg := blackenPixel
-      } .otherwise {
+      } .elsewhen (io.dataRead === 0.U) {
+        stateReg := blackenSelf
+      }
+        .otherwise {
         stateReg := leftIsBlack
       }
     }
+    is(blackenSelf){
+      io.address := xReg + 20.U * yReg + 400.U
+      io.dataWrite := 0.U
+      io.writeEnable := true.B
+      yReg := yReg + 1.U
+      stateReg := blackenLower
+    }
+    is(blackenLower){
+      io.address := xReg + 20.U * yReg + 400.U
+      io.dataWrite := 0.U
+      io.writeEnable := true.B
+      yReg := yReg + 1.U
+      stateReg := border
+    }
+
     is(leftIsBlack) {
       io.address := xReg + 20.U * yReg - 1.U
       when(io.dataRead === 0.U) {
@@ -96,14 +108,14 @@ class Accelerator extends Module {
       io.dataWrite := 255.U
       io.writeEnable := true.B
       yReg := yReg + 1.U
-      stateReg := neighborAndSelf
+      stateReg := border
     }
     is(blackenPixel) {
       io.address := xReg + 20.U * yReg + 400.U
       io.dataWrite := 0.U
       io.writeEnable := true.B
       yReg := yReg + 1.U
-      stateReg := neighborAndSelf
+      stateReg := border
     }
     is(done) {
       io.done := true.B
