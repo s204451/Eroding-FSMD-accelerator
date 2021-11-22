@@ -15,7 +15,7 @@ class Accelerator extends Module {
 
   //Write here your code
   //State enum and register
-  val idle :: border :: blackenSelf :: blackenLower :: leftIsBlack :: rightIsBlack :: upperIsBlack :: lowerIsBlack :: whitenPixel :: blackenPixel :: done :: Nil = Enum(11)
+  val idle :: border :: blackenSelf :: blackenNext :: leftIsBlack :: rightIsBlack :: upperIsBlack :: lowerIsBlack :: whitenPixel :: blackenPixel :: done :: Nil = Enum(11)
   val stateReg = RegInit(idle)
 
   //Support registers
@@ -61,9 +61,9 @@ class Accelerator extends Module {
       io.dataWrite := 0.U
       io.writeEnable := true.B
       yReg := yReg + 1.U
-      stateReg := blackenLower
+      stateReg := blackenNext
     }
-    is(blackenLower){
+    is(blackenNext){
       io.address := xReg + 20.U * yReg + 400.U
       io.dataWrite := 0.U
       io.writeEnable := true.B
