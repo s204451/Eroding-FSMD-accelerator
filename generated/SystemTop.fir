@@ -184,7 +184,7 @@ circuit SystemTop :
                     io.address <= _T_63 @[Accelerator.scala 99:18]
                     node _T_64 = eq(io.dataRead, UInt<1>("h00")) @[Accelerator.scala 100:24]
                     when _T_64 : @[Accelerator.scala 100:33]
-                      stateReg <= UInt<4>("h09") @[Accelerator.scala 101:18]
+                      stateReg <= UInt<4>("h02") @[Accelerator.scala 101:18]
                       skip @[Accelerator.scala 100:33]
                     else : @[Accelerator.scala 102:19]
                       stateReg <= UInt<4>("h08") @[Accelerator.scala 103:18]

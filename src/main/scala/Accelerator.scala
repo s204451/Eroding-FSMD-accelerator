@@ -98,7 +98,7 @@ class Accelerator extends Module {
     is(lowerIsBlack) {
       io.address := xReg + 20.U * yReg + 20.U
       when(io.dataRead === 0.U) {
-        stateReg := blackenPixel
+        stateReg := blackenSelf
       }.otherwise {
         stateReg := whitenPixel
       }

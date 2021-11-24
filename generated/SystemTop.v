@@ -280,7 +280,7 @@ end // initial
       end
     end else if (_T_58) begin
       if (_T_20) begin
-        stateReg <= 4'h9;
+        stateReg <= 4'h2;
       end else begin
         stateReg <= 4'h8;
       end
